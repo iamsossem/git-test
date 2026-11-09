@@ -1,23 +1,106 @@
-/* ===== 기본 설정 ===== */
+/* =========================================================
+   Material Design 3 (M3) 디자인 토큰
+   - 색상: M3 Baseline 컬러 롤 (light / dark)
+   - 타이포: M3 Type scale
+   - 모서리: M3 Shape scale
+   - 그림자: M3 Elevation level 0~3
+   - 모션: M3 Easing & Duration
+   ========================================================= */
 :root {
-  --bg: #ffffff;
-  --text: #111111;
-  --sub: #6b6b6b;
-  --accent: #111111;
-  --space: clamp(80px, 14vw, 180px); /* 섹션 사이 넉넉한 여백 */
+  /* --- Color roles (Light) --- */
+  --md-sys-color-primary: #6750a4;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #eaddff;
+  --md-sys-color-on-primary-container: #21005d;
+  --md-sys-color-secondary: #625b71;
+  --md-sys-color-secondary-container: #e8def8;
+  --md-sys-color-on-secondary-container: #1d192b;
+  --md-sys-color-surface: #fef7ff;
+  --md-sys-color-on-surface: #1d1b20;
+  --md-sys-color-on-surface-variant: #49454f;
+  --md-sys-color-outline: #79747e;
+  --md-sys-color-outline-variant: #cac4d0;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #f7f2fa;
+  --md-sys-color-surface-container: #f3edf7;
+  --md-sys-color-surface-container-high: #ece6f0;
+  --md-sys-color-surface-container-highest: #e6e0e9;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-shadow: 0, 0, 0;
+
+  /* --- Typography --- */
+  --md-ref-typeface: "Roboto", "Noto Sans KR", system-ui, sans-serif;
+
+  /* --- Shape --- */
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-full: 9999px;
+
+  /* --- Elevation --- */
+  --md-sys-elevation-1: 0 1px 2px rgba(var(--md-sys-color-shadow), 0.3), 0 1px 3px 1px rgba(var(--md-sys-color-shadow), 0.15);
+  --md-sys-elevation-2: 0 1px 2px rgba(var(--md-sys-color-shadow), 0.3), 0 2px 6px 2px rgba(var(--md-sys-color-shadow), 0.15);
+  --md-sys-elevation-3: 0 1px 3px rgba(var(--md-sys-color-shadow), 0.3), 0 4px 8px 3px rgba(var(--md-sys-color-shadow), 0.15);
+
+  /* --- Motion --- */
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --md-sys-motion-duration-short: 200ms;
+  --md-sys-motion-duration-medium: 400ms;
+  --md-sys-motion-duration-long: 700ms;
+
+  /* --- State layer 투명도 --- */
+  --md-sys-state-hover: 0.08;
+  --md-sys-state-pressed: 0.1;
+
+  /* --- 레이아웃 --- */
+  --space: clamp(64px, 12vw, 160px);
+  --app-bar-height: 64px;
 }
 
+/* 다크 모드: M3 Baseline dark 컬러 롤 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --md-sys-color-primary: #d0bcff;
+    --md-sys-color-on-primary: #381e72;
+    --md-sys-color-primary-container: #4f378b;
+    --md-sys-color-on-primary-container: #eaddff;
+    --md-sys-color-secondary: #ccc2dc;
+    --md-sys-color-secondary-container: #4a4458;
+    --md-sys-color-on-secondary-container: #e8def8;
+    --md-sys-color-surface: #141218;
+    --md-sys-color-on-surface: #e6e0e9;
+    --md-sys-color-on-surface-variant: #cac4d0;
+    --md-sys-color-outline: #938f99;
+    --md-sys-color-outline-variant: #49454f;
+    --md-sys-color-surface-container-lowest: #0f0d13;
+    --md-sys-color-surface-container-low: #1d1b20;
+    --md-sys-color-surface-container: #211f26;
+    --md-sys-color-surface-container-high: #2b2930;
+    --md-sys-color-surface-container-highest: #36343b;
+  }
+}
+
+/* ===== 기본 설정 ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
+  font-family: var(--md-ref-typeface);
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  /* Body large */
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -27,17 +110,107 @@ img {
   width: 100%;
 }
 
-/* ===== [효과 3] 상단 스크롤 진행률 프로그래스 바 ===== */
+/* ===== M3 Type scale 유틸리티 ===== */
+.md-display-large  { font-size: clamp(45px, 9vw, 57px); line-height: 1.12; font-weight: 400; letter-spacing: -0.25px; }
+.md-display-small  { font-size: clamp(32px, 5vw, 36px); line-height: 1.22; font-weight: 400; letter-spacing: 0; }
+.md-headline-large { font-size: 32px; line-height: 40px; font-weight: 400; }
+.md-title-large    { font-size: 22px; line-height: 28px; font-weight: 400; }
+.md-body-large     { font-size: 16px; line-height: 24px; font-weight: 400; letter-spacing: 0.5px; }
+.md-label-large    { font-size: 14px; line-height: 20px; font-weight: 500; letter-spacing: 0.1px; }
+
+/* ===== [효과 3] M3 Linear progress indicator ===== */
 .progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background: var(--accent);
+  height: 4px;
+  background: var(--md-sys-color-primary);
+  border-radius: 0 var(--md-sys-shape-corner-full) var(--md-sys-shape-corner-full) 0;
   transform: scaleX(0);          /* JS에서 0 ~ 1 사이로 늘려줌 */
   transform-origin: left center;
+  z-index: 1001;
+}
+
+/* ===== M3 Top app bar (Small) ===== */
+.top-app-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--app-bar-height);
+  display: flex;
+  align-items: center;
+  padding: 0 16px 0 24px;
+  color: #ffffff;               /* 히어로 위에서는 흰 글자 */
+  background: transparent;
   z-index: 1000;
+  transition:
+    background-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+    color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+
+/* 스크롤하면 JS가 .is-scrolled를 붙여 surface-container 컬러 + 그림자로 전환 */
+.top-app-bar.is-scrolled {
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+  box-shadow: var(--md-sys-elevation-2);
+}
+
+.top-app-bar .md-title-large {
+  flex: 1;
+}
+
+/* ===== M3 Buttons (공통 state layer) ===== */
+.md-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--md-sys-shape-corner-full);
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+
+/* State layer: 현재 글자색을 일정 투명도로 덮어 hover/pressed 표현 */
+.md-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+.md-button:hover::before  { opacity: var(--md-sys-state-hover); }
+.md-button:active::before { opacity: var(--md-sys-state-pressed); }
+.md-button:focus-visible {
+  outline: 3px solid var(--md-sys-color-secondary);
+  outline-offset: 2px;
+}
+
+.md-button--filled {
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+.md-button--filled:hover { box-shadow: var(--md-sys-elevation-1); }
+
+.md-button--text {
+  padding: 0 12px;
+  background: transparent;
+  color: inherit;
+}
+
+.md-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
 /* ===== 히어로 섹션 ===== */
@@ -66,11 +239,12 @@ img {
   z-index: -2;
 }
 
-/* 글자가 잘 보이도록 배경 위에 옅은 어두운 막 */
+/* M3 Scrim: 글자가 잘 보이도록 배경 위에 옅은 어두운 막 */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: var(--md-sys-color-scrim);
+  opacity: 0.4;
   z-index: -1;
 }
 
@@ -78,20 +252,16 @@ img {
   padding: 0 24px;
 }
 
-.hero h1 {
-  font-size: clamp(48px, 10vw, 120px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-}
-
 .hero p {
-  margin-top: 24px;
-  font-size: clamp(16px, 2vw, 20px);
+  margin-top: 16px;
   opacity: 0.9;
 }
 
-/* ===== 콘텐츠 섹션 (제목 + 문장 + 이미지) ===== */
+.hero .md-button {
+  margin-top: 32px;
+}
+
+/* ===== 콘텐츠 섹션 (제목 + 문장 + 이미지 카드) ===== */
 .section {
   max-width: 1120px;
   margin: 0 auto;
@@ -99,7 +269,7 @@ img {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   align-items: center;
-  gap: clamp(40px, 6vw, 96px);
+  gap: clamp(32px, 6vw, 80px);
 }
 
 /* 짝수 섹션은 이미지와 텍스트 위치를 바꿈 */
@@ -107,24 +277,42 @@ img {
   order: 2;
 }
 
+/* M3 Assist chip 스타일의 섹션 라벨 */
+.md-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 16px;
+  border-radius: var(--md-sys-shape-corner-small);
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  margin-bottom: 16px;
+}
+
 .section h2 {
-  font-size: clamp(36px, 6vw, 72px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  color: var(--md-sys-color-on-surface);
 }
 
 .section p {
-  margin-top: 24px;
-  font-size: clamp(16px, 1.6vw, 18px);
-  color: var(--sub);
+  margin-top: 16px;
+  color: var(--md-sys-color-on-surface-variant);
 }
 
+/* M3 Elevated card */
 .section-image {
-  border-radius: 16px;
+  border-radius: var(--md-sys-shape-corner-extra-large);
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  background: #f2f2f2; /* 이미지 로딩 전 자리 표시 */
+  background: var(--md-sys-color-surface-container-low); /* 이미지 로딩 전 자리 표시 */
+  box-shadow: var(--md-sys-elevation-1);
+  transition:
+    opacity var(--md-sys-motion-duration-long) var(--md-sys-motion-easing-standard),
+    transform var(--md-sys-motion-duration-long) var(--md-sys-motion-easing-emphasized-decelerate),
+    box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+
+.section-image:hover {
+  box-shadow: var(--md-sys-elevation-3);
 }
 
 .section-image img {
@@ -132,14 +320,14 @@ img {
   object-fit: cover;
 }
 
-/* ===== [효과 1] 아래에서 위로 페이드인 ===== */
+/* ===== [효과 1] 아래에서 위로 페이드인 (M3 Emphasized decelerate) ===== */
 /* 처음에는 투명하고 아래로 40px 내려가 있음 */
 .fade-up {
   opacity: 0;
   transform: translateY(40px);
   transition:
-    opacity 0.9s ease,
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--md-sys-motion-duration-long) var(--md-sys-motion-easing-standard),
+    transform var(--md-sys-motion-duration-long) var(--md-sys-motion-easing-emphasized-decelerate);
 }
 
 /* 화면에 들어오면 JS가 .is-visible을 붙여 제자리로 올라오며 나타남 */
@@ -148,25 +336,37 @@ img {
   transform: translateY(0);
 }
 
-/* ===== 반응형: 태블릿 / 모바일 ===== */
-@media (max-width: 768px) {
+/* ===== 푸터 ===== */
+.footer {
+  padding: 32px 24px;
+  text-align: center;
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* ===== 반응형: M3 Compact window (600px 미만) / Medium ===== */
+@media (max-width: 839px) {
   .section {
     grid-template-columns: 1fr; /* 한 줄로 쌓기 */
-    gap: 32px;
+    gap: 24px;
   }
 
   /* 모바일에서는 항상 텍스트가 위, 이미지가 아래 */
   .section.reverse .section-text {
     order: 0;
   }
+}
 
-  .section-image {
-    border-radius: 12px;
-  }
+@media (max-width: 599px) {
+  .top-app-bar { padding: 0 4px 0 16px; }
+  .section { padding-left: 16px; padding-right: 16px; }
+  .section-image { border-radius: var(--md-sys-shape-corner-large); }
+  .md-headline-large { font-size: 28px; line-height: 36px; }
 }
 
 /* 움직임 줄이기 설정을 켠 사용자에게는 애니메이션 끄기 */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .fade-up {
     opacity: 1;
     transform: none;
