@@ -41,6 +41,7 @@ fadeItems.forEach((el) => fadeObserver.observe(el));
    ========================================================= */
 const heroBg = document.getElementById('heroBg');
 const progressBar = document.getElementById('progressBar');
+const topAppBar = document.getElementById('topAppBar');
 const PARALLAX_SPEED = 0.3; // 숫자가 작을수록 배경이 더 느리게 움직임
 
 let ticking = false;
@@ -53,6 +54,10 @@ function updateOnScroll() {
   const maxScroll = document.documentElement.scrollHeight - viewportHeight;
   const progress = maxScroll > 0 ? scrollY / maxScroll : 0;
   progressBar.style.transform = `scaleX(${progress})`;
+  progressBar.setAttribute('aria-valuenow', Math.round(progress * 100));
+
+  // M3 Top app bar: 히어로를 거의 지나면 surface 컬러 + 그림자로 전환
+  topAppBar.classList.toggle('is-scrolled', scrollY > viewportHeight - 80);
 
   // [효과 2] 히어로가 화면에 보이는 동안만 배경 이동
   if (!reduceMotion && scrollY <= viewportHeight) {
